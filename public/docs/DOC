@@ -1,0 +1,4 @@
+Exceptions documentation
+
+-- not_clonable   : 1000
+-- class_not_found: 1001
