@@ -20,6 +20,7 @@
  * This file sotore the messages of the system in portuguese
  */
 
-$msg['not_cloneable']    = 'Esta classe não pode ser clonada';
-$msg['no_message_found'] = 'Nenhuma mensagem foi encontrada';
-$msg['class_not_found']  = 'A classe \'{class_name}\' não foi encontrada';
+$msg['not_cloneable']        = 'Esta classe n&atilde;o pode ser clonada';
+$msg['no_message_found']     = 'Nenhuma mensagem foi encontrada';
+$msg['class_not_found']      = 'A classe \'{class_name}\' n&atilde;o foi encontrada';
+$msg['controller_not_found'] = 'O controller \'{controller_name}\' n&atilde;o foi encontrado';

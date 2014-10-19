@@ -30,7 +30,6 @@ class Anunnaki_Config extends Config
 	 * Instance of this class
 	 * 
 	 * @var    Anunnaki_Config
-	 * @see    Anunnaki_Config
 	 * @access private
 	 * @static
 	 */
@@ -52,6 +51,7 @@ class Anunnaki_Config extends Config
 	 */
 	private function __construct()
 	{
+		$this->message = Anunnaki_Message::getInstance($this);
 	}
 	
 	/**
@@ -79,7 +79,6 @@ class Anunnaki_Config extends Config
 	 */
 	public function __clone()
 	{
-		$this->message = Anunnaki_Message::getInstance();
 		throw new Exception($this->message->getMessage('not_cloneable'), 1000);
 	}
 }

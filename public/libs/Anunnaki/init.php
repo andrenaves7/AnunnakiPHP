@@ -3,7 +3,7 @@
 /**
  * Start the application
  */
-Anunnaki_App::run();
+Anunnaki_App::getInstance()->run();
 
 /**
  * Include all the classes the system will use
@@ -25,10 +25,7 @@ function __autoload($class) {
 			}
 		}
 	}
-
-	$anunnaki_message = Anunnaki_Message::getInstance();
-	throw new Anunnaki_Load_Exception(
-			$anunnaki_message->getMessage('class_not_found', array('{class_name}' => $class)), 
-			1001
-	);
+	
+	$anunnaki_message = Anunnaki_Message::getInstance(Anunnaki_Config::getInstance());
+	throw new Exception($anunnaki_message->getMessage('class_not_found', array('{class_name}' => $class)), 1001);
 }

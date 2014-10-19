@@ -18,6 +18,7 @@ define('COMPONENTS',  'app/components/');
 define('HELPERS',     'app/helpers/');
 define('VALIDATORS',  'app/validators/');
 define('LANGUAGES',   'app/languages/');
+define('MODULES',     'app/modules/');
 
 /**
  * Define the module's environment

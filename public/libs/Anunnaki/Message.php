@@ -36,8 +36,8 @@ class Anunnaki_Message
 	 * Instance of the class Anunnaki_Config
 	 * 
 	 * @var    Anunnaki_Config
-	 * @access private
 	 * @see    Anunnaki_Config
+	 * @access private
 	 */
 	private $config;
 	
@@ -47,22 +47,23 @@ class Anunnaki_Message
 	 * @param  Anunnaki_Config $config
 	 * @access private
 	 */
-	private function __construct()
+	private function __construct(Anunnaki_Config $config)
 	{
-		
+		$this->config = $config;
 	}
 	
 	/**
 	 * Get instance of 'Anunnaki_Message'
 	 * 
+	 * @param  Anunnaki_Config $config
 	 * @access public
 	 * @static
 	 */
-	public static function getInstance()
+	public static function getInstance(Anunnaki_Config $config)
 	{
 		if (!is_object(self::$instance)) {
 			$class          = __CLASS__;
-			self::$instance = new $class();
+			self::$instance = new $class($config);
 		}
 	
 		return self::$instance;
@@ -78,8 +79,6 @@ class Anunnaki_Message
 	 */
 	public function getMessage($key, array $replace = array())
 	{
-		$this->config = Anunnaki_Config::getInstance();
-		
 		$file = LANGUAGES . strtolower($this->config->language) . '.php';
 		
 		if (is_file($file)) {
@@ -90,7 +89,7 @@ class Anunnaki_Message
 		
 		if (isset($msg[$key])) {
 			return $this->replace($msg[$key], $replace);
-		} else {
+		} else if (isset($msg['no_message_found'])) {
 			return $msg['no_message_found'];
 		}
 	}

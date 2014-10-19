@@ -1,4 +1,5 @@
 Exceptions documentation
 
--- not_clonable   : 1000
--- class_not_found: 1001
+-- not_clonable        : 1000
+-- class_not_found     : 1001
+-- controller_not_found: 1002

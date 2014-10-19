@@ -58,18 +58,41 @@ class Anunnaki_Controller
 	 */
 	public function __construct()
 	{
-		$this->config  = Anunnaki_Config::getInstance();
-		$this->message = Anunnaki_Message::getInstance();
 	}
 	
 	/**
 	 * Set the data of the controller
 	 * 
-	 * @param Anunnaki_Controller_Data $data
-	 * @see   Anunnaki_Controller_Data
+	 * @param  Anunnaki_Controller_Data $data
+	 * @access public
+	 * @see    Anunnaki_Controller_Data
 	 */
 	public function setData(Anunnaki_Controller_Data $data)
 	{
 		$this->data = $data;
+	}
+	
+	/**
+	 * Set the configuration class
+	 * 
+	 * @param  Anunnaki_Config $config
+	 * @access public
+	 * @see    Anunnaki_Config
+	 */
+	public function setConfig(Anunnaki_Config $config)
+	{
+		$this->config = $config;
+	}
+	
+	/**
+	 * Set the messages class
+	 * 
+	 * @param  Anunnaki_Message $message
+	 * @access public
+	 * @see    Anunnaki_Message
+	 */
+	public function setMessage(Anunnaki_Message $message)
+	{
+		$this->message = $message;
 	}
 }

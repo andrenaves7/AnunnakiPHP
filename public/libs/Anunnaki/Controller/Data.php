@@ -76,6 +76,14 @@ class Anunnaki_Controller_Data
 	private $actionMethod = null;
 	
 	/**
+	 * The params
+	 * 
+	 * @var    array
+	 * @access private
+	 */
+	private $params = array();
+	
+	/**
 	 * The constructor
 	 * 
 	 * @access private
@@ -169,6 +177,17 @@ class Anunnaki_Controller_Data
 	}
 	
 	/**
+	 * Set params passed by URL
+	 * 
+	 * @param  array $params
+	 * @access public
+	 */
+	public function setParams(array $params)
+	{
+		$this->params = $params;
+	}
+	
+	/**
 	 * Return the module name
 	 * 
 	 * @access public
@@ -221,5 +240,16 @@ class Anunnaki_Controller_Data
 	public function getActionMethod()
 	{
 		return $this->actionMethod;
+	}
+	
+	/**
+	 * Get all the params passed via URL
+	 * 
+	 * @access public
+	 * @return array
+	 */
+	public function getParams()
+	{
+		return $this->params;
 	}
 }
