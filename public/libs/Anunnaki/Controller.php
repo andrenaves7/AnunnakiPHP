@@ -58,6 +58,17 @@ class Anunnaki_Controller
 	 */
 	public function __construct()
 	{
+		$this->init();
+	}
+	
+	/**
+	 * The initial method
+	 * 
+	 * @access protected
+	 */
+	protected function init()
+	{
+		
 	}
 	
 	/**

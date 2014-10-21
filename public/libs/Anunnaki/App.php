@@ -127,7 +127,7 @@ class Anunnaki_App
 		
 		$params = $url;
 		
-		$controllerClass = $this->prepareController($controller) . 'Controller';
+		$controllerClass = $this->prepareController($module, $controller);
 		$actionMethod    = $this->prepareAction($action) . 'Action';
 		$params          = $this->prepareParams($params);
 		
@@ -159,6 +159,7 @@ class Anunnaki_App
 	}
 	
 	/**
+	 * Verify is this is a module
 	 * 
 	 * @param  string $moduleName
 	 * @access private
@@ -178,11 +179,12 @@ class Anunnaki_App
 	/**
 	 * Prepare the string to make it a class
 	 *
+	 * @param  string $module
 	 * @param  string $controller
 	 * @access private
 	 * @return string
 	 */
-	private function prepareController($controller)
+	private function prepareController($module, $controller)
 	{
 		$controller = explode(
 				$this->delimiters[0], 
@@ -192,7 +194,10 @@ class Anunnaki_App
 			$controller[$key] = ucfirst($value);
 		}
 	
-		return implode('', $controller);
+		$controller  = implode('', $controller);
+		$controller .= 'Controller';
+		
+		return ucfirst(strtolower($module)) . '_' . $controller;
 	}
 	
 	/**
