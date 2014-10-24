@@ -45,6 +45,14 @@ class Config extends Configuration
 	private $viewDir = 'views';
 	
 	/**
+	 * Holds the name of the directory where the layouts are placed
+	 *
+	 * @var 	string
+	 * @access 	private
+	 */
+	private $layoutDir = 'layouts';
+	
+	/**
 	 * Holds the name of the directory where the modules are placed
 	 * 
 	 * @var 	string
@@ -144,6 +152,17 @@ class Config extends Configuration
 	public function getViewsDir()
 	{
 		return $this->viewDir;
+	}
+	
+	/**
+	 * Return the directory of the layouts
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function getLayoutDir()
+	{
+		return $this->layoutDir;
 	}
 	
 	/**
@@ -254,5 +273,20 @@ class Config extends Configuration
 	public function getLayoutFileExtension()
 	{
 		return $this->layoutFileExtension;
+	}
+	
+	/**
+	 * Return the layout file
+	 * 
+	 * @access public
+	 * @return string
+	 */
+	public function getLayoutFile()
+	{
+		if (isset($this->layoutFile)) {
+			return $this->layoutFile;
+		} else {
+			throw new \Exception('The param \'Environment' . SEPARATOR . 'Config::layoutFile\' must be defined');
+		}
 	}
 }

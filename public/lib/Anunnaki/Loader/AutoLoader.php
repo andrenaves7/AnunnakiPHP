@@ -98,6 +98,7 @@ class AutoLoader
 	 * @param 	string $key
 	 * @throws 	\Exception
 	 * @return 	string
+	 * @access	public
 	 */
 	public function getPath($key)
 	{

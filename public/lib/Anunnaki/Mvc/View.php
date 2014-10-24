@@ -158,4 +158,72 @@ class View
 			}
 		}
 	}
+	
+	/**
+	 * This method render the layout file
+	 * for this the specified path
+	 *
+	 * @access	public
+	 * @throws	\Exception
+	 */
+	public function renderLayout()
+	{
+		// Check if the layout will be rendered
+		if($this->renderLayout) {
+			$layoutFile  = $this->autoLoader->getPath(APP_DIR) . DS;
+			$layoutFile .= $this->config->getLayoutFile();
+			
+			// Check if the system will load one file for each module
+			if (preg_match('/\[module\]/', $this->config->getLayoutFile())) {
+				$path  = $this->autoLoader->getPath(APP_DIR) . DS;
+				$path .= $this->config->getModulesDir() . DS;
+				
+				$layoutFile = '';
+				
+				// Read the modules directory
+				$modules = dir($path);
+				while($module = $modules->read()){
+					// Loads the layout for this module
+					if ($module === $this->data->getModule()) {
+						$layoutFile  = $this->autoLoader->getPath(APP_DIR) . DS;
+						$layoutFile .= str_replace('[module]', $module, $this->config->getLayoutFile());
+					}
+				}
+			}
+			
+			// Check if this layout file exists
+			if(file_exists($layoutFile)) {
+				// Require the layout file
+				require_once $layoutFile;
+			} else {
+				throw new \Exception('The layout file \'' . $layoutFile . '\' was not found', 1011);
+			}
+		} else {
+			// if the system will not load the layout file it try to render the view
+			$this->renderView();
+		}
+	}
+	
+	public function render($file)
+	{
+		$fileToLoad  = $this->autoLoader->getPath(APP_DIR) . DS;
+		$fileToLoad .= $this->config->getModulesDir() . DS;
+		$fileToLoad .= $this->data->getModule() . DS;
+		$fileToLoad .= $this->config->getViewsDir(). DS;
+		
+		$load[0] = $fileToLoad . $this->config->getLayoutDir() . DS . 
+			$file . $this->config->getLayoutFileExtension();
+		$load[1] = $fileToLoad . $this->config->getScriptsDir() . DS . 
+			$file . $this->config->getLayoutFileExtension();
+		
+		foreach ($load as $value) {
+			if (file_exists($value)) {
+				require_once $value;
+				return;
+			}
+		}
+		
+		$msg = $load[0]. '\' nor \'' . $load[1];
+		throw new \Exception('The file \'' . $msg . '\' was not found', 1012);
+	}
 }

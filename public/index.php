@@ -18,7 +18,7 @@
  */
 
 /**
- * Get a AnunnakiPHP's root directory
+ * Get an AnunnakiPHP's root directory
  */
 define('APP_DIR',   'app');
 define('DS',        DIRECTORY_SEPARATOR);

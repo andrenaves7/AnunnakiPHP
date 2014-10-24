@@ -4,9 +4,11 @@ Exceptions documentation
 -- class_not_found : 1001
 -- controller_not_found : 1002
 -- 'The index "[key]" was not set' : 1003
--- 'The controller file "[controller_file]" was not found' : 1004
+-- 'The controller  "[controller_file]" was not found' : 1004
 -- 'The controller class "[controller_class]" was not found' : 1005
 -- 'The action "[action_method]" was not found' : 1006
 -- 'The view file \'[view_name]\' was not found' : 1007
 -- 'The class \'[class_name]\' has no dependency' : 1008
 -- 'You must override the method '[class_name]::[method_name]'' : 1009
+-- 'The param \'Environment\\Config::layoutFile\' must be defined' : 1010
+-- 'The layout file \'[layout_name]\' was not found' : 1011

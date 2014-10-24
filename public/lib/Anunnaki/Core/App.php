@@ -105,6 +105,6 @@ class App
 		}
 		
 		call_user_func_array(array($controller, $actionMethod), $params);
-		$controller->getView()->renderView();
+		$controller->getView()->renderLayout();
 	}
 }

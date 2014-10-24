@@ -49,7 +49,7 @@ abstract class Config
 	 * @access	public
 	 * @var		string
 	 */
-	public $layoutFile = 'Modules/[module]/views/layout/layout.phtml';
+	protected $layoutFile = 'Modules/[module]/views/layouts/layout.phtml';
 	
 	
 	/**
