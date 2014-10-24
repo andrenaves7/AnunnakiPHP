@@ -18,6 +18,11 @@
  */
 
 /**
+ * Starts the session
+ */
+session_start();
+
+/**
  * Get an AnunnakiPHP's root directory
  */
 define('APP_DIR',   'app');
