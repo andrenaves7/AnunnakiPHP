@@ -29,6 +29,22 @@ use Environment\Config as Configuration;
 class Config extends Configuration
 {
 	/**
+	 * Holds the name of the directory where the scripts are placed
+	 *
+	 * @var 	string
+	 * @access 	private
+	 */
+	private $scriptsDir = 'scripts';
+	
+	/**
+	 * Holds the name of the directory where the views are placed
+	 *
+	 * @var 	string
+	 * @access 	private
+	 */
+	private $viewDir = 'views';
+	
+	/**
 	 * Holds the name of the directory where the modules are placed
 	 * 
 	 * @var 	string
@@ -107,6 +123,28 @@ class Config extends Configuration
 	 * @access	private
 	 */
 	private $layoutFileExtension = '.phtml';
+	
+	/**
+	 * Return the directory of the scripts
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function getScriptsDir()
+	{
+		return $this->scriptsDir;
+	}
+	
+	/**
+	 * Return the directory of the views
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function getViewsDir()
+	{
+		return $this->viewDir;
+	}
 	
 	/**
 	 * Return the directory of the modules

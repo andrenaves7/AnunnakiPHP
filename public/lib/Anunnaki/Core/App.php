@@ -97,7 +97,7 @@ class App
 		}
 		
 		// Start the controller
-		$controller = new $controllerClass($this->data, $this->config);
+		$controller = new $controllerClass($this->data, $this->config, $this->autoLoader);
 		
 		// Verify if the action exists
 		if (!method_exists($controller, $actionMethod)) {
@@ -105,5 +105,6 @@ class App
 		}
 		
 		call_user_func_array(array($controller, $actionMethod), $params);
+		$controller->getView()->renderView();
 	}
 }

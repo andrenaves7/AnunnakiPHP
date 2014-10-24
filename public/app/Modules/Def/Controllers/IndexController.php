@@ -49,6 +49,6 @@ class IndexController extends Controller
 	 */
 	public function indexAction()
 	{
-		echo 'Hi! I am a controller';
+		
 	}
 }

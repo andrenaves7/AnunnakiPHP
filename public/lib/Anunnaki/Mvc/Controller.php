@@ -20,6 +20,7 @@ namespace Anunnaki\Mvc;
 
 use Anunnaki\Mvc\Controller\Data;
 use Anunnaki\Core\Config;
+use Anunnaki\Loader\AutoLoader;
 
 /**
  * App is a class responsiple to start all the application
@@ -35,7 +36,7 @@ class Controller
 	 *
 	 * @var		Data
 	 * @see		Anunnaki\Mvc\Controller\Data
-	 * @access	private
+	 * @access	protected
 	 */
 	protected $data;
 	
@@ -44,9 +45,27 @@ class Controller
 	 * 
 	 * @var		Config
 	 * @see		Anunnaki\Core\Config
-	 * @access	private
+	 * @access	protected
 	 */
 	protected $config;
+	
+	/**
+	 * Holds the view of the application
+	 * 
+	 * @var		View
+	 * @see		Anunnaki\Mvc\View
+	 * @access	protected
+	 */
+	protected $view;
+	
+	/**
+	 * Holds the instance of the AutoLoader
+	 *
+	 * @var		View
+	 * @see		Anunnaki\Loader\AutoLoader
+	 * @access	private
+	 */
+	private $autoLoader;
 	
 	/**
 	 * Holds the params of the request
@@ -66,10 +85,12 @@ class Controller
 	 * @see		Anunnaki\Mvc\Controller\Data
 	 * @see		Anunnaki\Core\Config
 	 */
-	public function __construct(Data $data, Config $config)
+	public function __construct(Data $data, Config $config, AutoLoader $autoLoader)
 	{
-		$this->data   = $data;
-		$this->config = $config;
+		$this->data       = $data;
+		$this->config     = $config;
+		$this->autoLoader = $autoLoader;
+		$this->view       = new View($this->data, $this->config, $this->autoLoader);
 		
 		if ($_POST) {
 			$this->params = $_POST;
@@ -86,6 +107,17 @@ class Controller
 	 */
 	protected function init()
 	{
+		
+	}
 	
+	/**
+	 * Get the view object
+	 * 
+	 * @return	\Anunnaki\Mvc\View
+	 * @access	public
+	 */
+	public function getView()
+	{
+		return $this->view;
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * DependencyInjection class
+ * Di class
  *
  * AnunnakiPHP: A simple framework for all kind of projects (https://anunnakiphp.wordpress.com)
  * Copyright (c) Anunnaki software foundation. (https://anunnakiphp.wordpress.com)
@@ -25,7 +25,7 @@ namespace Anunnaki\Di;
  * @package		Anunnaki\Di
  * @author		Andre Naves
  */
-class DependencyInjection
+class Di
 {
 	/**
 	 * Holds the dependencies that system will use
