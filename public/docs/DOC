@@ -1,5 +1,12 @@
 Exceptions documentation
 
--- not_clonable        : 1000
--- class_not_found     : 1001
--- controller_not_found: 1002
+-- 'This is not a cloneable class' : 1000
+-- class_not_found : 1001
+-- controller_not_found : 1002
+-- 'The index "[key]" was not set' : 1003
+-- 'The controller  "[controller_file]" was not found' : 1004
+-- 'The controller class "[controller_class]" was not found' : 1005
+-- 'The action "[action_method]" was not found' : 1006
+-- 'The view file \'[view_name]\' was not found' : 1007
+-- 'The class \'[class_name]\' has no dependency' : 1008
+-- 'You must override the method '[class_name]::[method_name]'' : 1009
