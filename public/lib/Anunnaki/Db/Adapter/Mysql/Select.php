@@ -141,7 +141,7 @@ class Select implements SelectInterface
 	 * @param	Names $names
 	 * @access	pulic
 	 */
-	public function __construct(ActionMysql $action, Names $names)
+	public function __construct(MySQL $action, Names $names)
 	{
 		$this->dbTable = $action;
 		$this->names   = $names;
@@ -549,6 +549,13 @@ class Select implements SelectInterface
 		return;
 	}
 	
+	/**
+	 * Verify if the field is a mysql function
+	 * 
+	 * @param	string $field
+	 * @return	boolean
+	 * @access	private
+	 */
 	private function mysqlFunctions($field)
 	{
 		// Funções do Mysql que a classe Select deve ignorar

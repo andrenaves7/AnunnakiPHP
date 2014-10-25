@@ -18,8 +18,8 @@
 
 namespace Anunnaki\Mvc;
 
-use Anunnaki\Db\Adapter\Mysql\ActionMysql;
 use Anunnaki\Core\Config;
+use Anunnaki\Db\Adapter\Mysql\MySQL;
 
 /**
  * Model is a class responsible to controll
@@ -59,7 +59,7 @@ class Model
 		if (isset($this->config->db['adapter'])) {
 			switch (strtolower($this->config->db['adapter'])) {
 				case 'mysql':
-					$this->action = new ActionMysql($this->config);
+					$this->action = new MySQL($this->config);
 					break;
 				default:
 					throw new \Exception('You must define the proprety \'Environment\Config::$db[adapter]\'', 1016);

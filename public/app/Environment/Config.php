@@ -37,7 +37,8 @@ abstract class Config
 	/**
 	 * Database connection
 	 * 
-	 * @var array
+	 * @var		array
+	 * @access	public
 	 */
 	public $db = array(
 		'adapter' => 'mysql',

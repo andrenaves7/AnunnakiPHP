@@ -28,7 +28,7 @@ use Anunnaki\Core\Config;
  * @package		Anunnaki\Db\Adapter\Mysql
  * @author		Andre Naves
  */
-class ActionMysql implements Action
+class MySQL implements Action
 {
 	/**
 	 * Holds the PDO instance
