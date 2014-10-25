@@ -235,7 +235,7 @@ class Names
 	 */
 	public function getGroupBy()
 	{
-		return $this->getGroupBy();
+		return $this->groupBy;
 	}
 	
 	/**

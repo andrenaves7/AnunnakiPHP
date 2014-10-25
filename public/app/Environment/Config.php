@@ -35,6 +35,28 @@ use Anunnaki\Front\App;
 abstract class Config
 {
 	/**
+	 * Database connection
+	 * 
+	 * @var array
+	 */
+	public $db = array(
+		'adapter' => 'mysql',
+		'host'    => '127.0.0.1',
+		'port'    => '3306',
+		'schema'  => 'corel',
+		'user'    => 'root',
+		'pass'    => 'andrenaves'
+	);
+	
+	/**
+	 * The enviroment of the application
+	 *
+	 * @access		public
+	 * @example		'development', 'production'
+	 */
+	public $enviroment = 'development';
+	
+	/**
 	 * Holds the time zone of the application
 	 * 
 	 * @example	'America/Sao_Paulo'

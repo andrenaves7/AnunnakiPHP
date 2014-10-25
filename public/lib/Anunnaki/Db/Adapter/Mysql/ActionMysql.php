@@ -18,7 +18,8 @@
 
 namespace Anunnaki\Db\Adapter\Mysql;
 
-use Anunnaki\Db\Interfaces\Action as ActionInterface;
+use Anunnaki\Db\Interfaces\Action;
+use Anunnaki\Core\Config;
 
 /**
  * The Action class will have the methods
@@ -27,8 +28,17 @@ use Anunnaki\Db\Interfaces\Action as ActionInterface;
  * @package		Anunnaki\Db\Adapter\Mysql
  * @author		Andre Naves
  */
-class Action implements ActionInterface
+class ActionMysql implements Action
 {
+	/**
+	 * Holds the PDO instance
+	 * 
+	 * @see		\PDO
+	 * @var		\PDO
+	 * @access	private
+	 */
+	private $connection;
+	
 	/**
 	 * Holds the SQL class
 	 * 
@@ -48,12 +58,23 @@ class Action implements ActionInterface
 	private $names;
 	
 	/**
+	 * Holds the configuration of the application
+	 *
+	 * @var		Config
+	 * @see		Anunnaki\Core\Config
+	 * @access	protected
+	 */
+	protected $config;
+	
+	/**
 	 * The constructor
 	 */
-	public function __construct()
+	public function __construct(Config $config)
 	{
-		$this->names  = new Names();
-		$this->select = new Select($this, $this->names);
+		$this->config     = $config;
+		$this->connection = Connection::getInstance($config)->getConnection();
+		$this->names      = new Names();
+		$this->select     = new Select($this, $this->names);
 	}
 	
 	/**

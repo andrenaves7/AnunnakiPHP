@@ -18,7 +18,8 @@
 
 namespace Anunnaki\Mvc;
 
-use Anunnaki\Db\Adapter\Mysql\Action;
+use Anunnaki\Db\Adapter\Mysql\ActionMysql;
+use Anunnaki\Core\Config;
 
 /**
  * Model is a class responsible to controll
@@ -39,12 +40,33 @@ class Model
 	protected $action;
 	
 	/**
+	 * Holds the configuration of the application
+	 *
+	 * @var		Config
+	 * @see		Anunnaki\Core\Config
+	 * @access	protected
+	 */
+	protected $config;
+	
+	/**
 	 * The constructor
 	 * 
 	 * @access	public
 	 */
 	public function __construct()
 	{
-		$this->action = new Action();
+		$this->config = new Config();
+		if (isset($this->config->db['adapter'])) {
+			switch (strtolower($this->config->db['adapter'])) {
+				case 'mysql':
+					$this->action = new ActionMysql($this->config);
+					break;
+				default:
+					throw new \Exception('You must define the proprety \'Environment\Config::$db[adapter]\'', 1016);
+					break;
+			}
+		} else {
+			throw new \Exception('You must define the proprety \'Environment\Config::$db[adapter]\'', 1016);
+		}
 	}
 }

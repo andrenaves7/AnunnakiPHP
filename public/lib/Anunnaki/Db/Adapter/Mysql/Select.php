@@ -141,7 +141,7 @@ class Select implements SelectInterface
 	 * @param	Names $names
 	 * @access	pulic
 	 */
-	public function __construct(Action $action, Names $names)
+	public function __construct(ActionMysql $action, Names $names)
 	{
 		$this->dbTable = $action;
 		$this->names   = $names;
@@ -172,8 +172,8 @@ class Select implements SelectInterface
 		$table = $this->prepareTableName($table);
 		if (count($columns) > 0) {
 			foreach($columns as $key => $val) {
-				if ($val instanceof Anunnaki_Model_Adapter_MySQL_Expression) {
-					$columns[$key] = $val->getField();
+				if ($this->mysqlFunctions($val)) {
+					$columns[$key] = $val;
 				} else {
 					$columns[$key] = "{$table[1]}.{$val}";
 				}
@@ -402,7 +402,11 @@ class Select implements SelectInterface
 	{
 		if (count($columns) > 0) {
 			foreach ($columns as $key => $val) {
-				$columns[$key] = "{$table[1]}.{$val}";
+				if ($this->mysqlFunctions($val)) {
+					$columns[$key] = $val;
+				} else {
+					$columns[$key] = "{$table[1]}.{$val}";
+				}
 			}
 		}
 		$this->columns = array_merge($this->columns, $columns);
@@ -411,6 +415,7 @@ class Select implements SelectInterface
 		$string .= $this->names->getJoin() . $this->names->getSpaceSeparator();
 		$string .= $table[0] . $this->names->getSpaceSeparator();
 		$string .= $this->names->getOn();
+		$string .= $this->names->getSpaceSeparator() . $on;
 		array_push($this->join, $string);
 		return;
 	}
@@ -470,12 +475,12 @@ class Select implements SelectInterface
 		if (count($this->where) > 0) {
 			$where  = $this->names->getWhere();
 			$where .= $this->names->getSpaceSeparator();
-			$where .= implode($this->names->getSpaceSeparator() . $this->names->getWhere() . $this->names->getSpaceSeparator(), $this->where);
+			$where .= implode($this->names->getSpaceSeparator() . $this->names->getAnd() . $this->names->getSpaceSeparator(), $this->where);
 		} else {
 			$where = '';
 		}
 		
-		// Define the Or clause
+		// Define the OR clause
 		if (count($this->orWhere) > 0) {
 			$orWhere  = $this->names->getOr();
 			$orWhere .= $this->names->getSpaceSeparator();
@@ -484,7 +489,7 @@ class Select implements SelectInterface
 			$orWhere = '';
 		}
 		
-		// Define the OR clause
+		// Define the ORDER clause
 		if (count($this->order) > 0) {
 			$order  = $this->names->getOrderBy();
 			$order .= $this->names->getSpaceSeparator();
@@ -542,5 +547,35 @@ class Select implements SelectInterface
 		$this->sql = trim($sql);
 	
 		return;
+	}
+	
+	private function mysqlFunctions($field)
+	{
+		// Funções do Mysql que a classe Select deve ignorar
+		$functions[] = 'AVG';
+		$functions[] = 'COUNT';
+		$functions[] = 'MIN';
+		$functions[] = 'MAX';
+		$functions[] = 'SDT';
+		$functions[] = 'SDTDEV';
+		$functions[] = 'SUM';
+		$functions[] = 'CONCAT';
+		$functions[] = 'COALESCE';
+		$functions[] = 'IFNULL';
+		$functions[] = 'LTRIM';
+		$functions[] = 'RTRIM';
+		$functions[] = 'TRIM';
+		$functions[] = 'IFNULL';
+		
+		// Varre as funções do mysaql verificando se a mesma está presente no campo
+		foreach ($functions as $function) {
+			// Caso encontre alguma das funções na string $field retorna verdadeiro
+			if (preg_match('/' . $function . '/', $field)) {
+				return true;
+			}
+			// Caso contrário retorna false
+		}
+		
+		return false;
 	}
 }
