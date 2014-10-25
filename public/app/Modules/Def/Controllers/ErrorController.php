@@ -31,6 +31,12 @@ use Anunnaki\Mvc\Controller;
  */
 class ErrorController extends Controller
 {
+	/**
+	 * The called action when the application throw an error
+	 * 
+	 * @param string $code
+	 * @param string $msg
+	 */
 	public function indexAction($code = null, $msg = null)
 	{
 		$showError = true;
