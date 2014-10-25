@@ -33,8 +33,8 @@ class Model
 	/**
 	 * Holds the class to magane the database
 	 *
-	 * @var		Action
-	 * @see		Anunnaki\Db\Adapter\Mysql
+	 * @var		MySQL
+	 * @see		Anunnaki\Db\Adapter\Mysql\MySQL
 	 * @access	protected
 	 */
 	protected $action;

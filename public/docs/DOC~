@@ -12,3 +12,8 @@ Exceptions documentation
 -- 'You must override the method '[class_name]::[method_name]'' : 1009
 -- 'The param \'Environment\\Config::layoutFile\' must be defined' : 1010
 -- 'The layout file \'[layout_name]\' was not found' : 1011
+-- 'The file \'[file1] nor [file2]\' was not found' : 1012
+-- 'Incorret value to the alias \'[alias_name]\'' : 1013
+-- 'None table was defined' : 1014
+-- 'The database connection was not established' : 1015
+-- 'You must define the proprety \'Environment\Config::$db['adapter']\'' : 1016

@@ -77,6 +77,14 @@ class Config extends Configuration
 	private $mainModule = 'Def';
 	
 	/**
+	 * Holds the name of the main error module
+	 *
+	 * @var 	string
+	 * @access 	private
+	 */
+	private $mainErrorModule = 'Def';
+	
+	/**
 	 * Holds the name of the main controller
 	 * 
 	 * @var 	string
@@ -85,12 +93,28 @@ class Config extends Configuration
 	private $mainController = 'index';
 	
 	/**
+	 * Holds the name of the main error controller
+	 *
+	 * @var 	string
+	 * @access 	private
+	 */
+	private $mainErrorController = 'error';
+	
+	/**
 	 * Holds the name of the main action
 	 * 
 	 * @var		string
 	 * @access	private
 	 */
 	private $mainAction = 'index';
+	
+	/**
+	 * Holds the name of the main error action
+	 *
+	 * @var		string
+	 * @access	private
+	 */
+	private $mainErrorAction = 'index';
 	
 	/**
 	 * Holds the controller's suffix
@@ -199,6 +223,17 @@ class Config extends Configuration
 	}
 	
 	/**
+	 * Return the main error module
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function getMainErrorModule()
+	{
+		return $this->mainErrorModule;
+	}
+	
+	/**
 	 * Return the main controller
 	 * 
 	 * @access public
@@ -210,6 +245,17 @@ class Config extends Configuration
 	}
 	
 	/**
+	 * Return the main error controller
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function getMainErrorController()
+	{
+		return $this->mainErrorController;
+	}
+	
+	/**
 	 * Return the main action
 	 * 
 	 * @access public
@@ -218,6 +264,17 @@ class Config extends Configuration
 	public function getMainAction()
 	{
 		return $this->mainAction;
+	}
+	
+	/**
+	 * Return the main error action
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function getMainErrorAction()
+	{
+		return $this->mainErrorAction;
 	}
 	
 	/**

@@ -44,9 +44,9 @@ abstract class Config
 		'adapter' => 'mysql',
 		'host'    => '127.0.0.1',
 		'port'    => '3306',
-		'schema'  => 'corel',
+		'schema'  => 'mydb',
 		'user'    => 'root',
-		'pass'    => 'andrenaves'
+		'pass'    => 'root123'
 	);
 	
 	/**
@@ -56,6 +56,14 @@ abstract class Config
 	 * @example		'development', 'production'
 	 */
 	public $enviroment = 'development';
+	
+	/**
+	 * Enable logging error
+	 * 
+	 * @access	public
+	 * @var		boolean
+	 */
+	public $errorLog = true;
 	
 	/**
 	 * Holds the time zone of the application

@@ -1,9 +1,7 @@
 <?php
 /**
- * IndexController class
- * 
- * This is a controller class in the level of the application
- * 
+ * Log interface
+ *
  * AnunnakiPHP: A simple framework for all kind of projects (https://anunnakiphp.wordpress.com)
  * Copyright (c) Anunnaki software foundation. (https://anunnakiphp.wordpress.com)
  *
@@ -15,40 +13,18 @@
  * @link		https://anunnakiphp.wordpress.com AnunnakiPHP
  * @since		AnunnakiPHP v 2.1
  * @license		http://www.opensource.org/licenses/mit-license.php MIT License
- * @package		Modules\Def\Controllers
+ * @package		Anunnaki\Log\Interfaces
  */
 
-namespace Modules\Def\Controllers;
-
-use Anunnaki\Mvc\Controller;
+namespace Anunnaki\Log\Interfaces;
 
 /**
- * IndexController class
+ * This is a interface for the classes of log
  *
- * @package		Environment
+ * @package		Anunnaki\Log\Interfaces
  * @author		Andre Naves
- * @see			Anunnaki\Mvc\Controller
  */
-class IndexController extends Controller
+interface Log
 {
-	/**
-	 * Override the method init
-	 * 
-	 * @access	public
-	 * @see		Anunnaki\Front\Controller::init()
-	 */
-	protected function init()
-	{
-		
-	}
-	
-	/**
-	 * The action index
-	 * 
-	 * @access public
-	 */
-	public function indexAction()
-	{
-		
-	}
+	public function write();
 }

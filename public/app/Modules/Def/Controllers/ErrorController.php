@@ -1,9 +1,9 @@
 <?php
 /**
- * IndexController class
- * 
+ * ErrorController class
+ *
  * This is a controller class in the level of the application
- * 
+ *
  * AnunnakiPHP: A simple framework for all kind of projects (https://anunnakiphp.wordpress.com)
  * Copyright (c) Anunnaki software foundation. (https://anunnakiphp.wordpress.com)
  *
@@ -23,32 +23,29 @@ namespace Modules\Def\Controllers;
 use Anunnaki\Mvc\Controller;
 
 /**
- * IndexController class
+ * Bootstrap class
  *
  * @package		Environment
  * @author		Andre Naves
  * @see			Anunnaki\Mvc\Controller
  */
-class IndexController extends Controller
+class ErrorController extends Controller
 {
-	/**
-	 * Override the method init
-	 * 
-	 * @access	public
-	 * @see		Anunnaki\Front\Controller::init()
-	 */
-	protected function init()
+	public function indexAction($code = null, $msg = null)
 	{
+		$showError = true;
 		
-	}
-	
-	/**
-	 * The action index
-	 * 
-	 * @access public
-	 */
-	public function indexAction()
-	{
+		switch ($this->config->enviroment) {
+			case 'development':
+				$showError = true;
+				break;
+			case 'production':
+				$showError = false;
+				break;
+		}
 		
+		$this->view->showError = $showError;
+		$this->view->code      = $code;
+		$this->view->msg       = $msg;
 	}
 }

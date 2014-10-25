@@ -1,0 +1,8 @@
+<?php if ($this->showError): ?>
+	<h1><?php echo $this->code; ?> - That's an error.</h1>
+	<p><?php echo $this->msg; ?></p>
+<?php else: ?>
+	<h1>The page you requested was not found</h1>
+	<hr />
+	<p>You may have clicked an expired link or mistyped the address. Some web addresses are case sensitive</p>
+<?php endif; ?>

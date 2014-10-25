@@ -152,7 +152,7 @@ class Connection
 			$this->connection = new \PDO($dsn, $this->user, $this->pass, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 			$this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {
-			App::callOnException($e->getMessage(), $e->getCode());
+			App::callOnException($this->config, $e->getCode(), $e->getMessage());
 		}
 	}
 	

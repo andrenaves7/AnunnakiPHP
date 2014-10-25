@@ -112,14 +112,18 @@ class App
 	 * This static method is called when
 	 * some code throws an exception
 	 * 
+	 * @param   Config
 	 * @param	string $msg
 	 * @param	integer $code
 	 * @access	public
 	 */
-	public static function callOnException($msg, $code)
+	public static function callOnException(Config $config, $code, $msg)
 	{
 		$code = (int)$code;
 		
-		echo 'Catastrophic error: ' . $code . ' - ' . $msg;
+		$msg  = '<h1>' . $code . ' - That\'s a catastrophic error.</h1>';
+		$msg .= '<p>' . $msg . '</p>';
+		
+		exit($msg);
 	}
 }

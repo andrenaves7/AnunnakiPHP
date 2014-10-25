@@ -20,6 +20,7 @@ namespace Anunnaki\Core;
 
 use Anunnaki\Mvc\Controller\Data;
 use Anunnaki\Loader\AutoLoader;
+use Anunnaki\Log\Error;
 
 /**
  * Dispacher class is responsible for creating the controller data and
@@ -116,8 +117,53 @@ class Dispatcher
 			$app = new App($data, $this->config, $this->autoLoader);
 			$app->run();
 		} catch (\Exception $e) {
-			App::callOnException($e->getMessage(), $e->getCode());
+			$this->dispatchOnException($e->getCode(), $e->getMessage());
 		}
+	}
+	
+	/**
+	 * Dispatch an error
+	 * 
+	 * @param	integer $code
+	 * @param	string $msg
+	 * @access	private
+	 */
+	private function dispatchOnException($code, $msg)
+	{
+		// When some exception happen
+		$module     = $this->config->getMainErrorModule();
+		$controller = $this->config->getMainErrorController();
+		$action     = $this->config->getMainErrorAction();
+		
+		// We are preparing the name of the components
+		$module          = $this->prepareModule($module);
+		$controllerClass = $this->prepareController($module, $controller);
+		$actionMethod    = $this->prepareAction($action);
+		
+		// Generating the params
+		$params[] = $code;
+		$params[] = $msg;
+		
+		// Now we store it all in the Data class
+		$data = new Data();
+		$data->setModule($module);
+		$data->setController($controller);
+		$data->setAction($action);
+		$data->setControllerClass($controllerClass);
+		$data->setActionMethod($actionMethod);
+		$data->setParams($params);
+		
+		try {
+			// We call the class App starting the application
+			$app = new App($data, $this->config, $this->autoLoader);
+			$app->run();
+		} catch (\Exception $e) {
+			App::callOnException($this->config, $e->getCode(), $e->getMessage());
+		}
+		
+		// Write a log
+		$log = new Error($this->config, $code, $msg);
+		$log->write();
 	}
 	
 	/**

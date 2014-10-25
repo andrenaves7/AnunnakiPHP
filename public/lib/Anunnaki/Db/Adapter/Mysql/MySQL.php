@@ -1,6 +1,6 @@
 <?php
 /**
- * Action Class
+ * Action MySQL
  *
  * AnunnakiPHP: A simple framework for all kind of projects (https://anunnakiphp.wordpress.com)
  * Copyright (c) Anunnaki software foundation. (https://anunnakiphp.wordpress.com)
