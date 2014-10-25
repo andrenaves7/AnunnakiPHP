@@ -111,6 +111,36 @@ class Controller
 	}
 	
 	/**
+	 * Return a json object
+	 * 
+	 * @access		protected
+	 */
+	protected function jsonEncode(array $data)
+	{
+		$this->view->setNoRenderLayout();
+		$this->view->setNoRenderView();
+		
+		echo json_encode($data);
+	}
+	
+	/**
+	 * Redirector
+	 * 
+	 * @param	array $url
+	 * @access	protected
+	 */
+	protected function internalRedirect(array $url = array())
+	{
+		if (count($url) > 0) {
+			$this->config->root . implode(DS, $url) . DS;
+		} else {
+			$this->config->root;
+		}
+		
+		header("Location: {$url}");
+	}
+	
+	/**
 	 * Get the view object
 	 * 
 	 * @return	\Anunnaki\Mvc\View

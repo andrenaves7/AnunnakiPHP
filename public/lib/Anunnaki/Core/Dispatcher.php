@@ -116,8 +116,7 @@ class Dispatcher
 			$app = new App($data, $this->config, $this->autoLoader);
 			$app->run();
 		} catch (\Exception $e) {
-			//@TODO: implements the full catch exception
-			echo $e->getCode() . ' - ' . $e->getMessage();
+			App::callOnException($e->getMessage(), $e->getCode());
 		}
 	}
 	
@@ -151,8 +150,8 @@ class Dispatcher
 	private function isModule($moduleName)
 	{
 		$moduleName = $this->prepareModule($moduleName);
-		$dirName    = APP_DIR . $this->config->getModulesDir() . DS . $moduleName;
-	
+		$dirName    = $this->autoLoader->getPath(APP_DIR) . DS . $this->config->getModulesDir() . DS . $moduleName;
+		
 		if (is_dir($dirName)) {
 			return true;
 		} else {

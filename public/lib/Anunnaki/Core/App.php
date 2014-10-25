@@ -107,4 +107,19 @@ class App
 		call_user_func_array(array($controller, $actionMethod), $params);
 		$controller->getView()->renderLayout();
 	}
+	
+	/**
+	 * This static method is called when
+	 * some code throws an exception
+	 * 
+	 * @param	string $msg
+	 * @param	integer $code
+	 * @access	public
+	 */
+	public static function callOnException($msg, $code)
+	{
+		$code = (int)$code;
+		
+		echo 'Catastrophic error: ' . $code . ' - ' . $msg;
+	}
 }
