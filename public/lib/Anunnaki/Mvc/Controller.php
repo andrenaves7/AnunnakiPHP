@@ -18,6 +18,7 @@
 
 namespace Anunnaki\Mvc;
 
+use Anunnaki\Helper\Data as HelperData;
 use Anunnaki\Mvc\Controller\Data;
 use Anunnaki\Core\Config;
 use Anunnaki\Loader\AutoLoader;
@@ -31,6 +32,15 @@ use Anunnaki\Loader\AutoLoader;
  */
 class Controller
 {
+	/**
+	 * Holds the data of the controller
+	 *
+	 * @var		Data
+	 * @see		Anunnaki\Form\Data
+	 * @access	protected
+	 */
+	private $helperData;
+	
 	/**
 	 * Holds the data of the controller
 	 *
@@ -87,14 +97,17 @@ class Controller
 	 */
 	public function __construct(Data $data, Config $config, AutoLoader $autoLoader)
 	{
-		$this->data       = $data;
-		$this->config     = $config;
-		$this->autoLoader = $autoLoader;
-		$this->view       = new View($this->data, $this->config, $this->autoLoader);
+		$this->helperData = new HelperData();
 		
 		if ($_POST) {
 			$this->params = $_POST;
+			$this->helperData->setValues($this->params);
 		}
+		
+		$this->data       = $data;
+		$this->config     = $config;
+		$this->autoLoader = $autoLoader;
+		$this->view       = new View($this->helperData, $this->data, $this->config, $this->autoLoader);
 		
 		$this->init();
 	}

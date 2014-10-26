@@ -19,8 +19,12 @@
 namespace Anunnaki\Mvc;
 
 use Anunnaki\Core\Config;
+use Anunnaki\Helper\Data as HelperData;
 use Anunnaki\Mvc\Controller\Data;
 use Anunnaki\Loader\AutoLoader;
+use Anunnaki\Helper\Tag\Tag;
+use Anunnaki\Helper\Component\Component;
+use Anunnaki\Helper\Form\Form;
 
 /**
  * View is a class responsible to controll 
@@ -75,17 +79,45 @@ class View
 	private $renderLayout = true;
 	
 	/**
+	 * Holds the tag helper
+	 * 
+	 * @var		Tag
+	 * @access	public
+	 */
+	public $tag;
+	
+	/**
+	 * Holds the Component tag
+	 * 
+	 * @var		Component
+	 * @access	public
+	 */
+	public $component;
+	
+	/**
+	 * Holds the forms tag
+	 * 
+	 * @var		Form
+	 * @access	public
+	 */
+	public $form;
+	
+	/**
 	 * The constructor
 	 * 
+	 * @param	HelperData $helperData
 	 * @param	Data $data
 	 * @param	Config $config
 	 * @access	public
 	 */
-	public function __construct(Data $data, Config $config, AutoLoader $autoLoader)
+	public function __construct(HelperData $helperData, Data $data, Config $config, AutoLoader $autoLoader)
 	{
 		$this->data       = $data;
 		$this->config     = $config;
 		$this->autoLoader = $autoLoader;
+		$this->tag        = new Tag($this->config, $helperData);
+		$this->component  = new Component($this->config, $helperData);
+		$this->form       = new Form($this->config, $helperData);
 	}
 	
 	/**

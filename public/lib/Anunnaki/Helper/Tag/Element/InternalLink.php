@@ -1,6 +1,6 @@
 <?php
 /**
- * Log interface
+ * InternalLink class
  *
  * AnunnakiPHP: A simple framework for all kind of projects (https://anunnakiphp.wordpress.com)
  * Copyright (c) Anunnaki software foundation. (https://anunnakiphp.wordpress.com)
@@ -13,18 +13,39 @@
  * @link		https://anunnakiphp.wordpress.com AnunnakiPHP
  * @since		AnunnakiPHP v 2.1
  * @license		http://www.opensource.org/licenses/mit-license.php MIT License
- * @package		Anunnaki\Log\Interfaces
+ * @package		Anunnaki\Helper\Tag
  */
 
-namespace Anunnaki\Log\Interfaces;
+namespace Anunnaki\Helper\Tag\Element;
+
+use Anunnaki\Helper\Element;
 
 /**
- * This is a interface for the classes of log
+ * This class is responsible call a helper
  *
- * @package		Anunnaki\Log\Interfaces
+ * @package		Anunnaki\Helper\Tag
  * @author		Andre Naves
  */
-interface Log
+class InternalLink extends Element
 {
-	public function write();
+	/**
+	 * The internalLink helper method
+	 * 
+	 * @param array $link
+	 * @param unknown $text
+	 * @param array $options
+	 * @return string
+	 */
+	public function internalLink(array $link, $text, array $options = array())
+	{
+		if (count($link) > 0) {
+			$link = implode(DS, $link) . DS;
+		} else {
+			$link = '';
+		}
+	
+		$url = "href=\"{$this->config->root}{$link}\"";
+	
+		return "<a {$url}{$this->mountsOption($options)}>{$text}</a>";
+	}
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Log interface
+ * Submit class
  *
  * AnunnakiPHP: A simple framework for all kind of projects (https://anunnakiphp.wordpress.com)
  * Copyright (c) Anunnaki software foundation. (https://anunnakiphp.wordpress.com)
@@ -13,18 +13,34 @@
  * @link		https://anunnakiphp.wordpress.com AnunnakiPHP
  * @since		AnunnakiPHP v 2.1
  * @license		http://www.opensource.org/licenses/mit-license.php MIT License
- * @package		Anunnaki\Log\Interfaces
+ * @package		Anunnaki\Helper\Form\Element
  */
 
-namespace Anunnaki\Log\Interfaces;
+namespace Anunnaki\Helper\Form\Element;
+
+use Anunnaki\Helper\Element;
 
 /**
- * This is a interface for the classes of log
+ * This class is responsible call a helper
  *
- * @package		Anunnaki\Log\Interfaces
+ * @package		Anunnaki\Helper\Form\Element
  * @author		Andre Naves
  */
-interface Log
+class Submit extends Element
 {
-	public function write();
+	/**
+	 * Mount an submit button
+	 * 
+	 * @param	string $id
+	 * @param	string $value
+	 * @param	array $options
+	 * @return	string
+	 * @access	public
+	 * @example	echo $this->form->submit('enviar', 'Enviar')
+	 */
+	public function submit($id, $value = null, array $options = array())
+	{
+		$erros = '';
+		return "<input type=\"submit\" id=\"{$id}\" value=\"{$value}\"{$this->mountsOption($options)} />";
+	}
 }

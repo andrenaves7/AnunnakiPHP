@@ -1,6 +1,6 @@
 <?php
 /**
- * Log interface
+ * CSS class
  *
  * AnunnakiPHP: A simple framework for all kind of projects (https://anunnakiphp.wordpress.com)
  * Copyright (c) Anunnaki software foundation. (https://anunnakiphp.wordpress.com)
@@ -13,18 +13,31 @@
  * @link		https://anunnakiphp.wordpress.com AnunnakiPHP
  * @since		AnunnakiPHP v 2.1
  * @license		http://www.opensource.org/licenses/mit-license.php MIT License
- * @package		Anunnaki\Log\Interfaces
+ * @package		Anunnaki\Helper\Tag
  */
 
-namespace Anunnaki\Log\Interfaces;
+namespace Anunnaki\Helper\Tag\Element;
+
+use Anunnaki\Helper\Element;
 
 /**
- * This is a interface for the classes of log
+ * This class is responsible call a helper
  *
- * @package		Anunnaki\Log\Interfaces
+ * @package		Anunnaki\Helper\Tag
  * @author		Andre Naves
  */
-interface Log
+class Css extends Element
 {
-	public function write();
+	/**
+	 * The CSS helper method
+	 * 
+	 * @param	string $link
+	 * @return	string
+	 * @access	public
+	 */
+	public function css($link)
+	{
+		$link = $this->config->root . $link;
+		return "<link rel=\"stylesheet\" href=\"{$link}\" />";
+	}
 }

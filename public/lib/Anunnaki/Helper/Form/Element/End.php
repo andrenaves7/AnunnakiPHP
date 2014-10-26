@@ -1,6 +1,6 @@
 <?php
 /**
- * Log interface
+ * End class
  *
  * AnunnakiPHP: A simple framework for all kind of projects (https://anunnakiphp.wordpress.com)
  * Copyright (c) Anunnaki software foundation. (https://anunnakiphp.wordpress.com)
@@ -13,18 +13,29 @@
  * @link		https://anunnakiphp.wordpress.com AnunnakiPHP
  * @since		AnunnakiPHP v 2.1
  * @license		http://www.opensource.org/licenses/mit-license.php MIT License
- * @package		Anunnaki\Log\Interfaces
+ * @package		Anunnaki\Helper\Form\Element
  */
 
-namespace Anunnaki\Log\Interfaces;
+namespace Anunnaki\Helper\Form\Element;
+
+use Anunnaki\Helper\Element;
 
 /**
- * This is a interface for the classes of log
+ * This class is responsible call a helper
  *
- * @package		Anunnaki\Log\Interfaces
+ * @package		Anunnaki\Helper\Form\Element
  * @author		Andre Naves
  */
-interface Log
+class End extends Element
 {
-	public function write();
+	/**
+	 * Ends the tag form
+	 * 
+	 * @return	string
+	 * @access	public
+	 */
+	public function end()
+	{
+		return '</form>';
+	}
 }
