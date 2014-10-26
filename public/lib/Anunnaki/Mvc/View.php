@@ -25,6 +25,7 @@ use Anunnaki\Loader\AutoLoader;
 use Anunnaki\Helper\Tag\Tag;
 use Anunnaki\Helper\Component\Component;
 use Anunnaki\Helper\Form\Form;
+use Anunnaki\Helper\App\App as AppHelper;
 
 /**
  * View is a class responsible to controll 
@@ -103,6 +104,14 @@ class View
 	public $form;
 	
 	/**
+	 * Holds the application's helper
+	 *
+	 * @var		Form
+	 * @access	public
+	 */
+	public $helper;
+	
+	/**
 	 * The constructor
 	 * 
 	 * @param	HelperData $helperData
@@ -118,6 +127,7 @@ class View
 		$this->tag        = new Tag($this->config, $helperData);
 		$this->component  = new Component($this->config, $helperData);
 		$this->form       = new Form($this->config, $helperData);
+		$this->helper     = new AppHelper($this->config, $helperData);
 	}
 	
 	/**

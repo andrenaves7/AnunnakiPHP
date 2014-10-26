@@ -29,6 +29,14 @@ use Environment\Config as Configuration;
 class Config extends Configuration
 {
 	/**
+	 * Holds the name of the directory where the helpers are placed
+	 *
+	 * @var 	string
+	 * @access 	private
+	 */
+	private $helpersDir = 'Helpers';
+	
+	/**
 	 * Holds the name of the directory where the scripts are placed
 	 *
 	 * @var 	string
@@ -155,6 +163,17 @@ class Config extends Configuration
 	 * @access	private
 	 */
 	private $layoutFileExtension = '.phtml';
+	
+	/**
+	 * Return the directory of the helpers
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function getHelpersDir()
+	{
+		return $this->helpersDir;
+	}
 	
 	/**
 	 * Return the directory of the scripts
